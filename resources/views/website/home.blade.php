@@ -1,4 +1,4 @@
-@extends("Layouts.uimaster")
+@extends("Layouts.webmaster")
 
 @section("home-content")
     <!-- Carousel Start -->
