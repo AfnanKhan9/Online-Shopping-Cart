@@ -126,7 +126,7 @@
 								</li>
 								<li>
 									<a href="#">
-										<img src="{{ asset('dashasset/vendors/images/photo3.jpg') }}" alt="">
+										<img src="{{ asset('dashassets/vendors/images/photo3.jpg') }}" alt="">
 										<h3>John Doe</h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
