@@ -166,6 +166,16 @@
                             </div>
                         </div>
 
+                           <div class="nav-item dropdown dropright">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">NoteBook<i
+                                    class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a href="" class="dropdown-item">Sketch Book</a>
+                                <a href="" class="dropdown-item">Diary</a>
+                                <a href="" class="dropdown-item">Register</a>
+                            </div>
+                        </div>
+
                         <a href="" class="nav-item nav-link">NoteBook</a>
                     </div>
                     {{-- yahn khtm --}}
