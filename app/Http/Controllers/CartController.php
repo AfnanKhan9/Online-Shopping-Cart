@@ -11,7 +11,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view("website.shopcart");
+        return view("website.cart");
     }
 
     /**
