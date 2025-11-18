@@ -22,6 +22,9 @@ use App\Http\Controllers\Admin\{
 
 //  FRONTEND ROUTES
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/shop',[HomeController::class,'shop'])->name('shop');
+Route::get('/blog',[HomeController::class,'blog'])->name('blog');
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::resource('products', ProductController::class);
 Route::resource('cart', CartController::class);
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
