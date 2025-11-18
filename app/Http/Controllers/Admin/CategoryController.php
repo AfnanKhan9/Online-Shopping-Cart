@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,7 +13,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories=Category::all();
+        return view('dashboard.Categories.index_categories',compact('categories'));
+
     }
 
     /**
@@ -20,7 +23,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('dashboard.Categories.create_categories');
     }
 
     /**
@@ -28,7 +32,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $this->validate($request,[
+        'name' => 'required|string',
+        'description' => 'required|string'
+       ]);
+
+    Category::create([ 
+    'name' => $request->name,
+    'description' => $request->description,
+
+     ]);
+   return redirect()->route('categories.index')->with('success', 'Product added successfully');
     }
 
     /**
@@ -42,24 +56,36 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit(Category $category)
+{
+    return view('dashboard.Categories.edit_categories', compact('category'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, Category $category)
+{
+    $request->validate([
+        'name' => 'required|string',
+        'description' => 'required|string'
+    ]);
+
+    $category->update([
+        'name' => $request->name,
+        'description' => $request->description
+    ]);
+
+    return redirect()->route('categories.index')
+                     ->with('success', 'Category updated successfully');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+           return redirect()->route('categories.index')->with('success', 'Product Deleted successfully');
     }
 }

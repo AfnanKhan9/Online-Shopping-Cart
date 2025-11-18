@@ -122,7 +122,7 @@
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     {{-- nav ke item yahan --}}
                     <div class="navbar-nav w-100">
-
+{{-- 
                         <div class="nav-item dropdown dropright">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">School
                                 Stationary <i class="fa fa-angle-right float-right mt-1"></i></a>
@@ -174,7 +174,7 @@
                                 <a href="" class="dropdown-item">Diary</a>
                                 <a href="" class="dropdown-item">Register</a>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <a href="" class="nav-item nav-link">NoteBook</a>
                     </div>
