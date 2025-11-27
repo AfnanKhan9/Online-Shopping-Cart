@@ -1,126 +1,109 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<!-- Basic Page Info -->
-	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+    <style>
+        body {
+            background: #f2f4f7;
+            font-family: "Poppins", sans-serif;
+        }
 
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        .auth-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
 
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{{asset('dashassets/vendors/styles/core.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('dashassets/vendors/styles/icon-font.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('dashassets/vendors/styles/style.css') }}">
+        .auth-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+            transition: 0.3s;
+        }
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+        .auth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
 
-		gtag('config', 'UA-119386393-1');
-	</script>
+        .auth-title {
+            font-weight: 700;
+            font-size: 28px;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .btn-primary {
+            border-radius: 12px;
+            padding: 12px;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .link {
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .alert-danger {
+            border-radius: 12px;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="login-header box-shadow">
-		<div class="container-fluid d-flex justify-content-between align-items-center">
-			<div class="brand-logo">
-				<a href="login.html">
-					<img src="{{asset('dashassets/vendors/images/deskapp-logo.svg')}}" alt="">
-				</a>
-			</div>
-			<div class="login-menu">
-				<ul>
-					<li><a href="register.html">Register</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md-6 col-lg-7">
-					<img src="{{ asset('dashassets/vendors/images/login-page-img.png') }}" alt="">
-				</div>
-				<div class="col-md-6 col-lg-5">
-					<div class="login-box bg-white box-shadow border-radius-10">
-						<div class="login-title">
-							<h2 class="text-center text-primary">Login To DeskApp</h2>
-						</div>
-						<form>
-							<div class="select-role">
-								<div class="btn-group btn-group-toggle" data-toggle="buttons">
-									<label class="btn active">
-										<input type="radio" name="options" id="admin">
-										<div class="icon"><img src="vendors/images/briefcase.svg" class="svg" alt=""></div>
-										<span>I'm</span>
-										Manager
-									</label>
-									<label class="btn">
-										<input type="radio" name="options" id="user">
-										<div class="icon"><img src="vendors/images/person.svg" class="svg" alt=""></div>
-										<span>I'm</span>
-										Employee
-									</label>
-								</div>
-							</div>
-							<div class="input-group custom">
-								<input type="text" class="form-control form-control-lg" placeholder="Username">
-								<div class="input-group-append custom">
-									<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
-								</div>
-							</div>
-							<div class="input-group custom">
-								<input type="password" class="form-control form-control-lg" placeholder="**********">
-								<div class="input-group-append custom">
-									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
-								</div>
-							</div>
-							<div class="row pb-30">
-								<div class="col-6">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="customCheck1">
-										<label class="custom-control-label" for="customCheck1">Remember</label>
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="input-group mb-0">
-										<!--
-											use code for form submit
-											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
-										-->
-										<a class="btn btn-primary btn-lg btn-block" href="index.html">Sign In</a>
-									</div>
-									<div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
-									<div class="input-group mb-0">
-										<a class="btn btn-outline-primary btn-lg btn-block" href="register.html">Register To Create Account</a>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- js -->
-	<script src="{{asset('dashassets/vendors/scripts/core.js')}}"></script>
-	<script src="{{asset('dashassets/vendors/scripts/script.min.js')}}"></script>
-	<script src="{{asset('dashassets/vendors/scripts/process.js')}}"></script>
-	<script src="{{asset('dashassets/vendors/scripts/layout-settings.js')}}"></script>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h3 class="auth-title mb-4 text-center">Welcome Back</h3>
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="example@mail.com"
+                       value="{{ old('email') }}" required autofocus>
+                @error('email')
+                    <p class="text-danger mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                @error('password')
+                    <p class="text-danger mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">Login</button>
+
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <p class="text-center mt-3">
+                <a href="{{ route('register') }}" class="link">Create an Account</a>
+            </p>
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

@@ -31,5 +31,5 @@
            
 </div>
 <button type="submit" class="btn btn-primary">Insert</button>
-<a href="{{ route('categories.index') }}"><button type="submit" class="btn btn-primary">Back</button></a>
+<a href="{{ route('categories.index') }}" class="btn btn-secondary">Back</a>
 @endsection

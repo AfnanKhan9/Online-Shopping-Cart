@@ -11,6 +11,7 @@ use App\Http\Controllers\{
     AuthController,
     FeedbackController
 };
+
 use App\Http\Controllers\Admin\{
     AdminController,
     CategoryController,
@@ -20,28 +21,52 @@ use App\Http\Controllers\Admin\{
     CustomerController
 };
 
-//  FRONTEND ROUTES
+/*
+|--------------------------------------------------------------------------
+| FRONTEND ROUTES (Customer Area)
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop',[HomeController::class,'shop'])->name('shop');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+
 Route::resource('products', ProductController::class);
 Route::resource('cart', CartController::class);
+
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
+
 Route::resource('orders', OrderController::class);
 Route::resource('feedback', FeedbackController::class);
 
-//  AUTH ROUTES
-Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+
+/*
+|--------------------------------------------------------------------------
+| AUTH ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/login', [AuthController::class,'loginForm'])->name('login');
+Route::post('/login', [AuthController::class,'login']);
+Route::post('/logout', [AuthController::class,'logout'])->name('logout');
+
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-//  ADMIN ROUTES (prefix + middleware later add karenge)
-Route::prefix('admin')->group(function () {
+
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN ROUTES (Only Admin)
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+
     Route::resource('categories', CategoryController::class);
     Route::resource('products', AdminProductController::class);
     Route::resource('orders', AdminOrderController::class);
@@ -50,16 +75,18 @@ Route::prefix('admin')->group(function () {
 });
 
 
-
-
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| EMPLOYEE ROUTES (Only Employee)
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
+Route::prefix('employee')->middleware(['auth', 'role:employee'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('employee.dashboard');
+
+    // If employee needs access to orders, products, etc.
+    // Add here depending on your requirements
+});

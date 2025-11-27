@@ -280,7 +280,7 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.html">
+            <a href="{{ url('admin') }}">
                 <img src="{{ asset('dashassets/vendors/images/deskapp-logo.svg') }}" alt=""
                     class="dark-logo">
                 <img src="{{ asset('dashassets/vendors/images/deskapp-logo-white.svg') }}" alt=""
@@ -295,7 +295,7 @@
                 <ul id="accordion-menu">
 
                     <li>
-                        <a href="calendar.html" class="dropdown-toggle no-arrow">
+                        <a href="{{ url('admin') }}" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-calendar1"></span><span class="mtext">Home</span>
                         </a>
                     </li>
@@ -326,16 +326,21 @@
                     </li>
 
                     <li>
-                        <a href="calendar.html" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('customers.index') }}" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-user"></span><span class="mtext">Customer</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="calendar.html" class="dropdown-toggle no-arrow">
+                    
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-user-2"></span><span class="mtext">Employee</span>
                         </a>
+                        <ul class="submenu">
+                            <li><a href="{{ route('employees.index') }}">Employee Page</a></li>
+                            <li><a href="{{ route('employees.create') }}">Add Employee</a></li>
+                        </ul>
                     </li>
-
+                   
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-library"></span><span class="mtext">Category</span>
@@ -346,13 +351,17 @@
                         </ul>
                     </li>
 
+<li>
+    <a href="#" class="dropdown-toggle no-arrow"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <span class="micon dw dw-logout"></span>
+        <span class="mtext">Logout</span>
+    </a>
 
-                    <li>
-                        <a href="logout.html" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-logout"></span>
-                            <span class="mtext">Logout</span>
-                        </a>
-                    </li>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+</li>
 
                 </ul>
             </div>
@@ -364,6 +373,10 @@
       
 			@yield('categoryCreate')
             @yield('categorycontent')
+            @yield('employeecontent')
+            @yield('categorycreatecontent')
+            @yield('customercontent')
+            @yield('customercreatecontent')
         </div>
     
 
@@ -374,10 +387,10 @@
 
     {{-- Footer --}}
 
-    <div class="footer-wrap pd-20 mb-20 card-box">
+    {{-- <div class="footer-wrap pd-20 mb-20 card-box">
         DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit
             Hingarajiya</a>
-    </div>
+    </div> --}}
     </div>
     </div>
     <!-- js -->
