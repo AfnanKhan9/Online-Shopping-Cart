@@ -315,8 +315,8 @@
                             <span class="micon dw dw-library"></span><span class="mtext">Product</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="datatable.html">Product Page</a></li>
-                            <li><a href="basic-table.html">Add Product</a></li>
+                            <li><a href="{{ route('products.index') }}">Product Page</a></li>
+                            <li><a href="{{ route('products.create') }}">Add Product</a></li>
                         </ul>
                     </li>
                     <li>
@@ -373,15 +373,15 @@
       
 			@yield('categoryCreate')
             @yield('categorycontent')
-            @yield('employeecontent')
-            @yield('categorycreatecontent')
-            @yield('customercontent')
-            @yield('customercreatecontent')
         </div>
     
+            @yield('product-index')
+            @yield('product-create')
+            @yield('product-edit')
 
 
 
+        
 
 
 
