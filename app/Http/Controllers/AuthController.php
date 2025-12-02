@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use App\Models\Employee;
 use App\Models\Customer;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -21,34 +22,35 @@ class AuthController extends Controller
     // Handle login
     public function login(Request $request)
     {
-        $request->validate([
+        $cred = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        $email = $request->email;
-        $password = $request->password;
 
-
-        $admin = Admin::where('email', $email)->first();
-        if ($admin && $password === $admin->password) {
-            Auth::login($admin); // default guard
-            return redirect()->route('admin.dashboard');
+        if(Auth::attempt($cred)){
+            return redirect()->route('home');            
         }
+        
+        // $admin = Admin::where('email', $email)->first();
+        // if ($admin && $password === $admin->password) {
+        //     Auth::login($admin); // default guard
+        //     return redirect()->route('admin.dashboard');
+        // }
 
 
-        $employee = Employee::where('email', $email)->first();
-        if ($employee && $password === $employee->password)  {
-            Auth::login($employee);
-            return redirect()->route('employee.dashboard'); // fixed employee dashboard
-        }
+        // $employee = Employee::where('email', $email)->first();
+        // if ($employee && $password === $employee->password)  {
+        //     Auth::login($employee);
+        //     return redirect()->route('employee.dashboard'); // fixed employee dashboard
+        // }
 
 
-        $customer = Customer::where('email', $email)->first();
-        if ($customer && $password === $customer->password)  {
-            Auth::login($customer);
-            return redirect()->route('home');
-        }
+        // $customer = Customer::where('email', $email)->first();
+        // if ($customer && $password === $customer->password)  {
+        //     Auth::login($customer);
+        //     return redirect()->route('home');
+        // }
 
         // Invalid credentials
         return back()->withErrors(['email'=>'Invalid credentials'])->withInput();
@@ -75,13 +77,13 @@ public function register(Request $request)
 {
     $request->validate([
         'name' => 'required',
-        'email' => 'required|email|unique:customers,email',
+        'email' => 'required|email|unique:users,email',
         'password' => 'required',
         'phone' => 'required',
         'address' => 'required',
     ]);
 
-    $customer = Customer::create([
+    $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
         'password' => $request->password, 
@@ -90,7 +92,7 @@ public function register(Request $request)
     ]);
 
 
-    Auth::login($customer);
+    Auth::login($user);
 
     return redirect()->route('login');
 }
