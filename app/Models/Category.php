@@ -18,4 +18,11 @@ class Category extends Model
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 }
