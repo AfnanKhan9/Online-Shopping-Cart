@@ -14,6 +14,7 @@ class Product extends Model
         'product_code',
         'name',
         'description',
+        'long_description',
         'price',
         'slug',
         'stock',
@@ -22,23 +23,24 @@ class Product extends Model
     ];
 
     // Auto slug when name is set
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $value;
+   public function setNameAttribute($value)
+{
+    $this->attributes['name'] = $value;
 
-        // simple slug
-        $slug = Str::slug($value);
+    $slug = Str::slug($value);
+    $originalSlug = $slug;
+    $count = 1;
 
-        // make it unique
-        $originalSlug = $slug;
-        $count = 1;
-
-        while (self::where('slug', $slug)->exists()) {
-            $slug = $originalSlug . '-' . $count++;
-        }
-
-        $this->attributes['slug'] = $slug;
+    while (
+        self::where('slug', $slug)
+            ->where('id', '!=', $this->id)
+            ->exists()
+    ) {
+        $slug = $originalSlug . '-' . $count++;
     }
+
+    $this->attributes['slug'] = $slug;
+}
 
     public function category()
     {

@@ -26,7 +26,14 @@
 
             <div class="form-group mb-3">
                 <label>Description</label>
-                <textarea name="description" class="form-control">{{ $product->description }}</textarea>
+                  <input name="description" type="text" class="form-control"
+                       value="{{ $product->description }}" required>
+
+            </div>
+
+               <div class="form-group mb-3">
+                <label>Long Description</label>
+                <textarea name="longdescription" class="form-control" >{{ $product->long_description }}</textarea>
             </div>
 
             <div class="form-group mb-3">

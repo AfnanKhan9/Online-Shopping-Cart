@@ -19,7 +19,12 @@
 
             <div class="form-group mb-3">
                 <label>Description</label>
-                <textarea name="description" class="form-control"></textarea>
+                <input name="description" type="text" class="form-control" required>
+            </div>
+
+             <div class="form-group mb-3">
+                <label>Long Description</label>
+                <textarea name="longdescription" class="form-control"></textarea>
             </div>
 
             <div class="form-group mb-3">

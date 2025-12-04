@@ -31,7 +31,7 @@ class AdminProductController extends Controller
             'image' => 'nullable|image'
         ]);
 
-        // 🔥 Auto Product Code Generate
+        //  Auto Product Code Generate
         $product_code = 'PR' . rand(10000, 99999);
 
         $imagePath = null;
@@ -44,6 +44,7 @@ class AdminProductController extends Controller
             'product_code' => $product_code,
             'name' => $request->name,
             'description' => $request->description,
+            'long_description' => $request->longdescription,
             'price' => $request->price,
             'stock' => $request->stock,
             'category_id' => $request->category_id,
@@ -87,6 +88,7 @@ class AdminProductController extends Controller
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
+            'long_description' => $request->longdescription,
             'price' => $request->price,
             'stock' => $request->stock,
             'category_id' => $request->category_id,
