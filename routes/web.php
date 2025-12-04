@@ -29,10 +29,13 @@ use App\Http\Controllers\Admin\{
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/shop',[HomeController::class,'shop'])->name('shop');
-Route::get('/blog',[HomeController::class,'blog'])->name('blog');
-Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+Route::middleware(['auth','role:customer'])->group(function () {
+    Route::get('/', [HomeController::class,'index'])->name('home');
+    Route::get('/shop',[HomeController::class,'shop'])->name('shop');
+    Route::get('/blog',[HomeController::class,'blog'])->name('blog');
+    Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+});
+
 
 
 Route::get('/product/{slug}', [HproductController::class, 'show'])->name('product.detail');
@@ -66,8 +69,7 @@ Route::post('/register', [AuthController::class, 'register']);
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-
+Route::prefix('admin')->middleware(['auth','role:admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::resource('categories', CategoryController::class);
@@ -76,6 +78,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('employees', EmployeeController::class);
     Route::resource('customers', CustomerController::class);
 });
+
 
 
 /*
