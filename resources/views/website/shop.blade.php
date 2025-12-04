@@ -161,6 +161,8 @@
                         
 
                     <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                          <div class="product-item bg-light mb-4 position-relative" style="cursor:pointer;"
+         onclick="window.location='{{ route('product.detail', $item->slug) }}'">
                         <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="{{ asset("storage/".$item->image) }}" alt="">
@@ -188,6 +190,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
 
                     @endforeach                   

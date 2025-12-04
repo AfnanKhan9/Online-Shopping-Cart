@@ -20,6 +20,9 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Image</th>
+                        <th>Slug</th>
+                        <th>Description</th>
+                        <th>Long_Description</th>
                         <th>Price</th>
                         <th>Stock</th>
                         <th width="180px">Actions</th>
@@ -43,7 +46,11 @@
                             @endif
                         </td>
 
-                        <td>{{ number_format($p->price, 2) }}</td>
+                         <td>{{ $p->slug }}</td>
+                         <td>{{ $p->description }}</td>
+                         <td>{{ $p->long_description }}</td>
+                        
+                         <td>{{ number_format($p->price, 2) }}</td>
                         <td>{{ $p->stock }}</td>
 
                         <td>

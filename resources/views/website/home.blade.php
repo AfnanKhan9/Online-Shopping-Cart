@@ -122,7 +122,7 @@
                         <div class="cat-item img-zoom d-flex align-items-center mb-4">
                             <div class="overflow-hidden" style="width: 100px; height: 100px;">
                                 <img class="img-fluid" src="img/cat-3.jpg" alt="">
-                            </div>  
+                            </div>
                             <div class="flex-fill pl-3">
                                 <h6>{{ $item->name }}</h6>
                                 <small class="text-body">{{ $item->products->count() }} Products</small>
@@ -136,46 +136,51 @@
     <!-- Categories End -->
 
 
-    <!-- Products Start -->
+    <!--Featured Products Start -->
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured
                 Products</span></h2>
         <div class="row px-xl-5">
             @foreach ($products as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-
-                    <div class="product-item bg-light mb-4">
+                    <div class="product-item bg-light mb-4 position-relative" style="cursor:pointer;"
+                        onclick="window.location='{{ route('product.detail', $item->slug) }}'">
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $item->image) }}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                <a class="btn btn-outline-dark btn-square" href="#"><i
                                         class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                <a class="btn btn-outline-dark btn-square" href="#"><i
                                         class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                <a class="btn btn-outline-dark btn-square" href="#"><i
                                         class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                <a class="btn btn-outline-dark btn-square" href="#"><i
                                         class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">{{ $item->name }}</a>
+                            <a class="h6 text-decoration-none text-truncate"
+                                href="{{ route('products.show', $item->slug) }}">
+                                {{ $item->name }}
+                            </a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <h5>{{ $item->price }}</h5>
                                 <h6 class="text-muted ml-2"></h6>
                             </div>
+                            <p class="text-muted small text-truncate">{{ $item->description }}</p>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small class="fa fa-star text-primary mr-1"></small>
-                                <small></small>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
+
+
 
         </div>
     </div>
@@ -213,45 +218,48 @@
     <!-- Offer End -->
 
 
-    <!-- Products Start -->
+    <!-- Recent Products Start -->
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent
                 Products</span></h2>
         <div class="row px-xl-5">
             @foreach ($recentproducts as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-
-                    <div class="product-item bg-light mb-4">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ asset('storage/' . $item->image) }}" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                        class="fa fa-search"></i></a>
+                    <div class="product-item bg-light mb-4 position-relative" style="cursor:pointer;"
+                        onclick="window.location='{{ route('product.detail', $item->slug) }}'">
+                        <div class="product-item bg-light mb-4">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="{{ asset('storage/' . $item->image) }}"
+                                    alt="">
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-square" href=""><i
+                                            class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i
+                                            class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i
+                                            class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i
+                                            class="fa fa-search"></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">{{ $item->name }}</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>{{ $item->price }}</h5>
-                                <h6 class="text-muted ml-2"></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small></small>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate" href="">{{ $item->name }}</a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ $item->price }}</h5>
+                                    <h6 class="text-muted ml-2"></h6>
+                                </div>
+                                <p class="text-muted small text-truncate">{{ $item->description }}</p>
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small></small>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             @endforeach
 

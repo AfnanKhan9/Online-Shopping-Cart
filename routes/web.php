@@ -5,11 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     HomeController,
     ProductController,
+    HproductController,
     CartController,
     CheckoutController,
     OrderController,
     AuthController,
-    FeedbackController
+    FeedbackController,
+
 };
 
 use App\Http\Controllers\Admin\{
@@ -32,7 +34,9 @@ Route::get('/shop',[HomeController::class,'shop'])->name('shop');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 
-Route::resource('products', ProductController::class);
+
+Route::get('/product/{slug}', [HproductController::class, 'show'])->name('product.detail');
+
 Route::resource('cart', CartController::class);
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
@@ -54,7 +58,6 @@ Route::post('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
-
 
 
 /*
@@ -86,7 +89,4 @@ Route::prefix('employee')->middleware(['auth', 'role:employee'])->group(function
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('employee.dashboard');
-
-    // If employee needs access to orders, products, etc.
-    // Add here depending on your requirements
 });
