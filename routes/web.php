@@ -37,7 +37,17 @@ Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 
 Route::get('/product/{slug}', [HproductController::class, 'show'])->name('product.detail');
 
-Route::resource('cart', CartController::class);
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+Route::post('/add-to-cart/{id}', [CartController::class, 'add'])->name('cart.add');
+
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
+
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');

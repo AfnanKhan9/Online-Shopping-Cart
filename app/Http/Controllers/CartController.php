@@ -3,62 +3,80 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // CART PAGE
     public function index()
     {
-        return view("website.cart");
+        $cart = session()->get('cart', []);
+        return view('website.cart', compact('cart'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // ADD TO CART
+    public function add(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $cart = session()->get('cart', []);
+
+        // Pehle check kare product already cart me to nahi
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            // Product add ho raha hai cart me
+            $cart[$id] = [
+                "name" => $product->name,
+                "price" => $product->price,
+                "quantity" => 1,
+                "image" => $product->image
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Product Cart me add hogaya!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // UPDATE CART QUANTITY
+    public function update(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] = $request->quantity;
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Cart update hogaya!');
+    }
+
+    // REMOVE ITEM
+    public function remove($id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->back()->with('success', 'Item cart se remove hogaya!');
+    }
+
+    // CLEAR FULL CART
+    public function clear()
+    {
+        session()->forget('cart');
+        return redirect()->back()->with('success', 'Cart empty hogaya!');
+    }
+
     public function store(Request $request)
     {
-        //
+        $id = $request->product_id;
+        return $this->add($request, $id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
