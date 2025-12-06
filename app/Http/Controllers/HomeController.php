@@ -26,12 +26,13 @@ class HomeController extends Controller
     }
 
     function blog(){
-                $category = Category::with('products','category')->get();
-        return view ("website.blog");
+$category = Category::with('products')->get();
+
+        return view ("website.blog",compact('category'));
     }
 
     function contact(){
-                $category = Category::with('products','category')->get();
-        return view ("website.contact");
+                $category = Category::with('products')->get();
+        return view ("website.contact",compact('category'));
     }
 }
