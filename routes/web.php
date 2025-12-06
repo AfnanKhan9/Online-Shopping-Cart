@@ -29,12 +29,7 @@ use App\Http\Controllers\Admin\{
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
-Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-<<<<<<< HEAD
     Route::get('/', [HomeController::class,'index'])->name('home');
     Route::get('/shop', [HproductController::class, 'shop'])->name('shop');
 
@@ -50,9 +45,6 @@ Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name(
 Route::get('/shop/category/{slug}', [HproductController::class, 'shopByCategory'])->name('shop.category');
 
 
-=======
-// Product details
->>>>>>> 5d4ec378f4b49b14251f39570b748ea4dcf80c18
 Route::get('/product/{slug}', [HproductController::class, 'show'])->name('product.detail');
 
 // Cart

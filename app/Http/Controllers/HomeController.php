@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-<<<<<<< HEAD
 // HomeController.php
 public function index()
 {
@@ -58,26 +57,6 @@ public function contact()
 
 }
 
-=======
-    function index()
-    {
-
-
-        $products = Product::with('category')->get();
-        $recentproducts = Product::with('category')->orderBy('id', 'desc')->get();
-        $category = Category::with('products')->get();
-
-        return view("website.home", compact('products', 'recentproducts', 'category'));
-    }
-
-    function shop()
-    {
-        $category = Category::with('products')->get();
-        $products = Product::with('category')->paginate(10);
-
-        return view("website.shop", compact('products', 'category'));
-    }
->>>>>>> 5d4ec378f4b49b14251f39570b748ea4dcf80c18
 
     function blog()
     {
