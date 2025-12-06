@@ -31,7 +31,8 @@ use App\Http\Controllers\Admin\{
 
 
     Route::get('/', [HomeController::class,'index'])->name('home');
-    Route::get('/shop',[HomeController::class,'shop'])->name('shop');
+    Route::get('/shop', [HproductController::class, 'shop'])->name('shop');
+
     Route::get('/blog',[HomeController::class,'blog'])->name('blog');
     Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::middleware(['auth','role:customer'])->group(function () {
@@ -41,6 +42,7 @@ Route::middleware(['auth','role:customer'])->group(function () {
 Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
 });
 
+Route::get('/shop/category/{slug}', [HproductController::class, 'shopByCategory'])->name('shop.category');
 
 
 Route::get('/product/{slug}', [HproductController::class, 'show'])->name('product.detail');

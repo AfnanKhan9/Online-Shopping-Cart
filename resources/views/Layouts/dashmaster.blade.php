@@ -44,18 +44,7 @@
 </head>
 
 <body>
-    {{-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="{{asset('dashassets/vendors/images/deskapp-logo.svg')}}" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> --}}
+
 
     <div class="header">
         <div class="header-left">
@@ -296,7 +285,7 @@
 
                     <li>
                         <a href="{{ url('admin') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-calendar1"></span><span class="mtext">Home</span>
+                            <span class="micon dw dw-calendar1"></span><span class="mtext">Admin-Home</span>
                         </a>
                     </li>
 

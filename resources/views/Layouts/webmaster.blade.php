@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,62 +123,16 @@
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     {{-- nav ke item yahan --}}
                     <div class="navbar-nav w-100">
-{{-- 
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">School
-                                Stationary <i class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Pencils</a>
-                                <a href="" class="dropdown-item">Sharpners</a>
-                                <a href="" class="dropdown-item">Eraser</a>
-                                <a href="" class="dropdown-item">Scale</a>
-                            </div>
-                        </div>
 
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cards<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Gift Cards</a>
-                                <a href="" class="dropdown-item">Birthday Cards</a>
-                                <a href="" class="dropdown-item">Aniversery Cards</a>
-                                <a href="" class="dropdown-item">Festival Greeting Cards</a>
-                            </div>
-                        </div>
-
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Drawing<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Pencil Colors</a>
-                                <a href="" class="dropdown-item">Crayons</a>
-                                <a href="" class="dropdown-item">Sketch Pencil</a>
-                            </div>
-                        </div>
-
-                          <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Paint<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Poster Color</a>
-                                <a href="" class="dropdown-item">Oil Paint</a>
-                                <a href="" class="dropdown-item">Arcylics</a>
-                                <a href="" class="dropdown-item">Spray Paint</a>
-                            </div>
-                        </div>
-
-                           <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">NoteBook<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Sketch Book</a>
-                                <a href="" class="dropdown-item">Diary</a>
-                                <a href="" class="dropdown-item">Register</a>
-                            </div>
-                        </div> --}}
-@foreach ($category as $categories )
-      <a href="" class="nav-item nav-link">{{$categories->name}}</a>
+@foreach ($allCategories as $cat)
+    <a href="{{ route('shop', ['category' => $cat->name]) }}" class="nav-item nav-link">
+        {{ $cat->name }}
+    </a>
 @endforeach
+
+
+
+
                        
                     </div>
                     {{-- yahn khtm --}}
@@ -206,11 +161,15 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="{{ route("cart.index") }}" class="btn px-0 ml-3">
-                                <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
-                            </a>
+                           <a href="{{ route('cart.index') }}" class="btn px-0 ml-3">
+    <i class="fas fa-shopping-cart text-primary"></i>
+
+    <span class="badge text-secondary border border-secondary rounded-circle"
+        style="padding-bottom: 2px;">
+        {{ session('cart') ? count(session('cart')) : 0 }}
+    </span>
+</a>
+
                         </div>
                     </div>
                 </nav>

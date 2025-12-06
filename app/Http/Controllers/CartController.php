@@ -11,9 +11,10 @@ class CartController extends Controller
     // CART PAGE
     public function index()
     {
+        
         $cart = session()->get('cart', []);
-                $category = Category::with('products')->get();
-        return view('website.cart', compact('cart','category'));
+                $allCategories = Category::with('products')->get();
+        return view('website.cart', compact('cart','allCategories'));
     }
 
     // ADD TO CART
