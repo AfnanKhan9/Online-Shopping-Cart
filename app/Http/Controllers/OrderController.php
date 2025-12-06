@@ -3,62 +3,72 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        // Ensure user is logged in
+        $user = Auth::user();
+        // dd($user);
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please login to place order.');
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        // Cart check
+        $cart = session('cart', []);
+        if (empty($cart)) {
+            return redirect()->back()->with('error', 'Cart is empty!');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        // Validate billing info from form
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:50',
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:500',
+            'payment_method' => 'required|string|in:cod,card,bank',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        // Calculate totals
+        $subtotal = 0;
+        foreach ($cart as $item) {
+            $subtotal += $item['price'] * $item['quantity'];
+        }
+        $total_amount = $subtotal + 200; // fixed shipping
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+
+        // Create order with user submitted billing info
+        $order = Order::create([
+            'user_id' => $user->id,
+            'total_amount' => $total_amount,
+            'payment_method' => $request->payment_method,
+            'status' => 'pending',
+            'order_date' => now(),
+        ]);
+
+        $order->order_number = 'ORD-' . time() . "-" . $order->id;
+        $order->save();
+
+        // Insert order items
+        foreach ($cart as $product_id => $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $product_id,
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+            ]);
+        }
+
+        // Clear cart
+        session()->forget('cart');
+
+        // Redirect to thankyou page
+        return redirect()->route('thankyou')->with('success', 'Order successfully placed!');
     }
 }
