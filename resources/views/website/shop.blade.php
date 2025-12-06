@@ -90,8 +90,8 @@
                                 <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                    <button class="btn btn-outline-dark btn-square">
-                                        <i class="fa fa-shopping-cart"></i>
+                                    <button class="btn ">
+                                      <a class="btn btn-outline-dark btn-square" href="#">  <i class="fa fa-shopping-cart"></i></a>
                                     </button>
                                 </form>
                                 <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>

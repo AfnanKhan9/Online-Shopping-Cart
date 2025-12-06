@@ -19,17 +19,19 @@ class HomeController extends Controller
     }
 
     function shop(){
-        
+                $category = Category::with('products')->get();
          $products = Product::with('category')->paginate(10);
 
-        return view ("website.shop",compact('products'));
+        return view ("website.shop",compact('products','category'));
     }
 
     function blog(){
+                $category = Category::with('products','category')->get();
         return view ("website.blog");
     }
 
     function contact(){
+                $category = Category::with('products','category')->get();
         return view ("website.contact");
     }
 }

@@ -134,35 +134,43 @@
 
     <!-- Featured Products Start -->
     <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
-                class="bg-secondary pr-3">Featured Products</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured
+                Products</span></h2>
         <div class="row px-xl-5">
             @foreach ($products as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <div class="product-item bg-light mb-4 position-relative">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ asset('storage/' . $item->image) }}" alt="">
-                            <div class="product-action">
-                                <!-- Add to Cart Form -->
-                                <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                    <button class="btn btn-outline-dark btn-square">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </button>
-                                </form>
-                                <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-search"></i></a>
+                    <div class="card shadow-sm" onclick="window.location.href='{{ url('/product/' . $item->slug) }}'"
+                        style="cursor: pointer; border-radius: 15px;">
+                        <div class="product-item bg-light mb-4 position-relative">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="{{ asset('storage/' . $item->image) }}" alt="">
+                                <div class="product-action">
+                                    <!-- Add to Cart Form -->
+                                    <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                        <button class="btn">
+
+                                            <a class="btn btn-outline-dark btn-square"> <i
+                                                    class="fa fa-shopping-cart"></i></a>
+                                        </button>
+                                    </form>
+                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                            class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                            class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                            class="fa fa-search"></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate"
-                                href="{{ route('product.detail', $item->slug) }}">{{ $item->name }}</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>{{ $item->price }}</h5>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate"
+                                    href="{{ route('product.detail', $item->slug) }}">{{ $item->name }}</a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ $item->price }} PKR</h5>
+                                </div>
+                                <p class="text-muted small text-truncate">{{ $item->description }}</p>
                             </div>
-                            <p class="text-muted small text-truncate">{{ $item->description }}</p>
                         </div>
                     </div>
                 </div>
@@ -178,30 +186,39 @@
         <div class="row px-xl-5">
             @foreach ($recentproducts as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <div class="product-item bg-light mb-4 position-relative">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ asset('storage/' . $item->image) }}" alt="">
-                            <div class="product-action">
-                                <!-- Add to Cart Form -->
-                                <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                    <button class="btn btn-outline-dark btn-square">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </button>
-                                </form>
-                                <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-search"></i></a>
+                    <div class="card shadow-sm" onclick="window.location.href='{{ url('/product/' . $item->slug) }}'"
+                        style="cursor: pointer; border-radius: 15px;">
+                        <div class="product-item bg-light mb-4 position-relative">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="{{ asset('storage/' . $item->image) }}"
+                                    alt="">
+                                <div class="product-action">
+                                    <!-- Add to Cart Form -->
+                                    <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                        <button class="btn">
+
+                                            <a class="btn btn-outline-dark btn-square"> <i
+                                                    class="fa fa-shopping-cart"></i></a>
+                                        </button>
+                                    </form>
+                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                            class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                            class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                            class="fa fa-search"></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate"
-                                href="{{ route('product.detail', $item->slug) }}">{{ $item->name }}</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>{{ $item->price }}</h5>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate"
+                                    href="{{ route('product.detail', $item->slug) }}">{{ $item->name }}</a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ $item->price }} PKR</h5>
+                                </div>
+                                <p class="text-muted small text-truncate">{{ $item->description }}</p>
                             </div>
-                            <p class="text-muted small text-truncate">{{ $item->description }}</p>
                         </div>
                     </div>
                 </div>
@@ -209,5 +226,4 @@
         </div>
     </div>
     <!-- Recent Products End -->
-
 @endsection

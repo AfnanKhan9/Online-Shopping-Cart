@@ -29,11 +29,16 @@ use App\Http\Controllers\Admin\{
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth','role:customer'])->group(function () {
+
     Route::get('/', [HomeController::class,'index'])->name('home');
     Route::get('/shop',[HomeController::class,'shop'])->name('shop');
     Route::get('/blog',[HomeController::class,'blog'])->name('blog');
     Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+Route::middleware(['auth','role:customer'])->group(function () {
+
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
 });
 
 
@@ -52,8 +57,7 @@ Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear')
 Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
 
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
+
 
 Route::resource('orders', OrderController::class);
 Route::resource('feedback', FeedbackController::class);
