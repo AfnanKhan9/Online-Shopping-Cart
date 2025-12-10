@@ -55,33 +55,28 @@ public function contact()
     return view('website.contact', compact('allCategories'));
 }
 
-}
 
-
-    function blog()
-    {
-        $category = Category::with('products')->get();
-
-        return view("website.blog", compact('category'));
-    }
-
-    function contact()
-    {
-        $category = Category::with('products')->get();
-        return view("website.contact", compact('category'));
-    }
 
     function checkout()
     {
         $category = Category::with('products')->get();
+            $allCategories = Category::all(); // Add this line
 
-        return view("website.checkout", compact('category'));
+
+        return view("website.checkout", compact('category','allCategories'));
     }
 
     function thankyou()
     {
         $category = Category::with('products')->get();
+                    $allCategories = Category::all(); // Add this line
 
-        return view('website.thankyou', compact('category'));
+
+        return view('website.thankyou', compact('category','allCategories'));
     }
+
+}
+
+
+
 

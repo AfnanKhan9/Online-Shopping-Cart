@@ -32,7 +32,8 @@ class OrderController extends Controller
             'phone' => 'required|string|max:50',
             'city' => 'required|string|max:255',
             'address' => 'required|string|max:500',
-            'payment_method' => 'required|string|in:cod,card,bank',
+            'payment_method' => 'required|string|in:cod,credit_card,cheque,vpp',
+
         ]);
 
         // Calculate totals
@@ -50,9 +51,11 @@ class OrderController extends Controller
             'payment_method' => $request->payment_method,
             'status' => 'pending',
             'order_date' => now(),
+            'order_number' => 'ORD-' . date('YmdHis') . '-' . uniqid(), // generate unique order_number before insert
+
         ]);
 
-        $order->order_number = 'ORD-' . time() . "-" . $order->id;
+        $order->order_number = 'ORD-' . date('YmdHis') . "-" . $order->id;
         $order->save();
 
         // Insert order items
