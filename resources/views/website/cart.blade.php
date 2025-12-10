@@ -40,48 +40,62 @@
 
                         <tr>
                             <td class="align-middle">
-                                <img src="{{ asset('uploads/'.$item['image']) }}" alt="" style="width: 50px;">
+                                <img src="{{ asset('uploads/' . $item['image']) }}" 
+                                     alt="" style="width: 50px;">
                                 {{ $item['name'] }}
                             </td>
 
                             <td class="align-middle">Rs {{ $item['price'] }}</td>
 
                             <td class="align-middle">
+
+                                <!-- AUTO UPDATE QUANTITY FORM -->
                                 <form action="{{ route('cart.update', $id) }}" method="POST">
                                     @csrf
-                                    <div class="input-group quantity mx-auto" style="width: 100px;">
 
-                                        <button class="btn btn-sm btn-primary" 
+                                    <div class="input-group quantity mx-auto" style="width: 110px;">
+
+                                        <!-- MINUS BUTTON -->
+                                        <button class="btn btn-sm btn-primary"
                                             onclick="event.preventDefault(); 
-                                            var qty = this.parentNode.querySelector('input').value; 
-                                            if(qty > 1){ this.parentNode.querySelector('input').value--; }">
+                                            let input = this.parentNode.querySelector('input');
+                                            if (parseInt(input.value) > 1) {
+                                                input.value = parseInt(input.value) - 1;
+                                                this.closest('form').submit();
+                                            }">
                                             <i class="fa fa-minus"></i>
                                         </button>
 
-                                        <input type="text" readonly name="quantity" 
-                                            class="form-control form-control-sm bg-secondary border-0 text-center" 
+                                        <input type="text" readonly name="quantity"
+                                            class="form-control form-control-sm bg-secondary border-0 text-center"
                                             value="{{ $item['quantity'] }}">
 
+                                        <!-- PLUS BUTTON -->
                                         <button class="btn btn-sm btn-primary"
                                             onclick="event.preventDefault(); 
-                                            this.parentNode.querySelector('input').value++;">
+                                            let input = this.parentNode.querySelector('input');
+                                            input.value = parseInt(input.value) + 1;
+                                            this.closest('form').submit();">
                                             <i class="fa fa-plus"></i>
                                         </button>
 
                                     </div>
-                                    <button class="btn btn-sm btn-success mt-1">Update</button>
+
                                 </form>
                             </td>
 
                             <td class="align-middle">Rs {{ $lineTotal }}</td>
 
                             <td class="align-middle">
+
+                                <!-- REMOVE FROM CART -->
                                 <form action="{{ route('cart.remove', $id) }}" method="POST">
                                     @csrf
                                     <button class="btn btn-sm btn-danger">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </form>
+
                             </td>
                         </tr>
 
@@ -105,6 +119,7 @@
 
             <div class="bg-light p-30 mb-5">
                 <div class="border-bottom pb-2">
+
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
                         <h6>Rs {{ $subtotal }}</h6>
@@ -114,6 +129,7 @@
                         <h6 class="font-weight-medium">Shipping</h6>
                         <h6 class="font-weight-medium">Rs 200</h6>
                     </div>
+
                 </div>
 
                 <div class="pt-2">
@@ -126,7 +142,8 @@
                         <h5>Rs {{ $grandTotal }}</h5>
                     </div>
 
-                    <a href="/checkout" class="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                    <a href="{{ route('checkout') }}" 
+                       class="btn btn-block btn-primary font-weight-bold my-3 py-3">
                         Proceed To Checkout
                     </a>
 

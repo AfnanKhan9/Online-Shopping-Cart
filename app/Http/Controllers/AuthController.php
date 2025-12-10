@@ -28,16 +28,19 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // prevent session fixation
 
-            // Redirect based on role
+            // Redirect to intended URL (checkout or any page) or fallback based on role
+            $intended = redirect()->intended('/');
+
             $role = Auth::user()->role;
 
             switch ($role) {
                 case 'admin':
-                    return redirect('/admin'); // admin dashboard
+                    // If intended page is homepage, redirect to admin dashboard
+                    return $intended->getTargetUrl() === url('/') ? redirect('/admin') : $intended;
                 case 'employee':
-                    return redirect('/employee/dashboard'); // employee dashboard
+                    return $intended->getTargetUrl() === url('/') ? redirect('/employee/dashboard') : $intended;
                 case 'customer':
-                    return redirect('/'); // customer main page
+                    return $intended;
                 default:
                     Auth::logout();
                     return redirect()->route('login')->withErrors(['role' => 'Invalid role.']);
@@ -57,43 +60,32 @@ class AuthController extends Controller
     }
 
     // Handle registration
-   public function register(Request $request)
-{
-    // Validate inputs (without password confirmation)
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:6', // no confirmed rule
-        'phone' => 'required|string|max:20',
-        'address' => 'required|string|max:255',
-        // 'role' => 'required|in:admin,employee,customer'
-    ]);
+    public function register(Request $request)
+    {
+        // Validate inputs
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+        ]);
 
-    // Create user with hashed password
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password), // always hash
-        'phone' => $request->phone,
-        'address' => $request->address,
-        // 'role' => $request->role,
-    ]);
+        // Create user with hashed password
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'role' => 'customer', // default role
+        ]);
 
-    Auth::login($user); // auto login
+        Auth::login($user); // auto login
 
-    // Redirect based on role
-    switch ($user->role) {
-        case 'admin':
-            return redirect('/admin');
-        case 'employee':
-            return redirect('/employee/dashboard');
-        case 'customer':
-            return redirect('/');
-        default:
-            Auth::logout();
-            return redirect()->route('login')->withErrors(['role' => 'Invalid role.']);
+        // Redirect to intended page (checkout) or fallback '/'
+        return redirect()->intended('/');
     }
-}
 
     // Logout user
     public function logout(Request $request)

@@ -27,86 +27,82 @@
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid">
-        <div class="row bg-secondary py-1 px-xl-5">
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="d-inline-flex align-items-center h-100">
-                    <a class="text-body mr-3" href="">About</a>
-                    <a class="text-body mr-3" href="">Contact</a>
-                    <a class="text-body mr-3" href="">Help</a>
-                    <a class="text-body mr-3" href="">FAQs</a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                            Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
-                        </div>
-                    </div>
-                    <div class="btn-group mx-2">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                            data-toggle="dropdown">USD</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">EUR</button>
-                            <button class="dropdown-item" type="button">GBP</button>
-                            <button class="dropdown-item" type="button">CAD</button>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                            data-toggle="dropdown">EN</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">FR</button>
-                            <button class="dropdown-item" type="button">AR</button>
-                            <button class="dropdown-item" type="button">RU</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-inline-flex align-items-center d-block d-lg-none">
-                    <a href="" class="btn px-0 ml-2">
-                        <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
-                    </a>
-                    <a href="" class="btn px-0 ml-2">
-                        <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
-                    </a>
-                </div>
+   <!-- Topbar Start -->
+<div class="container-fluid">
+    <div class="row bg-secondary py-1 px-xl-5">
+        <div class="col-lg-6 d-none d-lg-block">
+            <div class="d-inline-flex align-items-center h-100">
+                <a class="text-body mr-3" href="">About</a>
+                <a class="text-body mr-3" href="">Contact</a>
+                <a class="text-body mr-3" href="">Help</a>
+                <a class="text-body mr-3" href="">FAQs</a>
             </div>
         </div>
-        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
-            <div class="col-lg-4">
-                <a href="" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
-                </a>
-            </div>
-            <div class="col-lg-4 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
+        <div class="col-lg-6 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+                <!-- My Account Dropdown -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                        My Account
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        @if(auth()->check())
+                            <span class="dropdown-item-text">
+                                Hello, {{ auth()->user()->name }}
                             </span>
-                        </div>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                               Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        @else
+                            <a class="dropdown-item" href="{{ route('login') }}">Sign in</a>
+                            <a class="dropdown-item" href="{{ route('register') }}">Sign up</a>
+                        @endif
                     </div>
-                </form>
+                </div>
+
+                <!-- Currency Dropdown -->
+                <div class="btn-group mx-2">
+                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">EUR</button>
+                        <button class="dropdown-item" type="button">GBP</button>
+                        <button class="dropdown-item" type="button">CAD</button>
+                    </div>
+                </div>
+
+                <!-- Language Dropdown -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">FR</button>
+                        <button class="dropdown-item" type="button">AR</button>
+                        <button class="dropdown-item" type="button">RU</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">Customer Service</p>
-                <h5 class="m-0">+012 345 6789</h5>
+
+            <div class="d-inline-flex align-items-center d-block d-lg-none">
+                <a href="" class="btn px-0 ml-2">
+                    <i class="fas fa-heart text-dark"></i>
+                    <span class="badge text-dark border border-dark rounded-circle"
+                        style="padding-bottom: 2px;">0</span>
+                </a>
+                <a href="" class="btn px-0 ml-2">
+                    <i class="fas fa-shopping-cart text-dark"></i>
+                    <span class="badge text-dark border border-dark rounded-circle"
+                        style="padding-bottom: 2px;">0</span>
+                </a>
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
+</div>
+<!-- Topbar End -->
+
 
 
     <!-- Navbar Start -->
@@ -175,6 +171,7 @@
                                 <a href="" class="dropdown-item">Register</a>
                             </div>
                         </div> --}}
+
 @foreach ($category as $categories )
       <a href="" class="nav-item nav-link">{{$categories->name}}</a>
 @endforeach
@@ -229,6 +226,10 @@
     @yield('contact-content')
 
     @yield('detail-content')
+
+    @yield('checkout-content')
+
+     @yield('thankyou-content')
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
