@@ -74,6 +74,66 @@ public function contact()
 
         return view('website.thankyou', compact('category','allCategories'));
     }
+public function placeOrder(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'phone' => 'required|string|max:20',
+        'city' => 'required|string|max:100',
+        'address' => 'required|string|max:500',
+        'payment_method' => 'required|string',
+    ]);
+
+    $user = auth()->user();
+    $orderNumber = 'ORD-' . date('YmdHis') . '-' . rand(1, 99);
+
+    $cartItems = session('cart', []);
+    if (empty($cartItems)) {
+        return redirect()->route('shop')->with('error', 'Your cart is empty!');
+    }
+
+    // Calculate total
+    $subtotal = 0;
+    foreach ($cartItems as $item) {
+        $subtotal += $item['price'] * $item['quantity'];
+    }
+    $shipping = 200; // fixed shipping
+    $totalAmount = $subtotal + $shipping;
+
+    // Create order
+    $order = \App\Models\Order::create([
+        'user_id' => $user->id ?? null,
+        'name' => $request->name,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'city' => $request->city,
+        'address' => $request->address,
+        'total_amount' => $totalAmount,
+        'payment_method' => $request->payment_method,
+        'status' => 'pending',
+        'order_date' => now()->toDateString(),
+        'order_number' => $orderNumber,
+    ]);
+
+    // Save order items
+ $cart = session('cart');
+
+foreach ($cart as $productId => $item) {
+    $order->orderItems()->create([
+        'product_id' => $productId, // ✔️ product id array key hai
+        'quantity' => $item['quantity'],
+        'price' => $item['price'],
+    ]);
+}
+
+
+    // Clear cart session
+    session()->forget('cart');
+
+    return redirect()->route('thankyou')->with('success', 'Order placed successfully!');
+}
+
 
 }
 

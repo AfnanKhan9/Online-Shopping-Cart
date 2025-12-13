@@ -28,7 +28,7 @@
                 <div class="card mb-4">
                     <div class="card-header bg-dark text-white">Billing Details</div>
                     <div class="card-body">
-                        <form action="{{ route('userorders.store') }}" method="POST">
+                        <form action="{{ route('checkout.place') }}" method="POST">
                             @csrf
 
                             <div class="row">

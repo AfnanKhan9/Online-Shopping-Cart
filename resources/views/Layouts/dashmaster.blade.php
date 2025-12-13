@@ -9,10 +9,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('dashassets/vendors/images/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
         href="{{ asset('dashassets/vendors/images/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('dashassets/vendors/images/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('dashassets/vendors/images/favicon-16x16.png') }}">
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8FHvK2B8s4p6z/L5d2/2+Xp+h6z/Q+P7e+Z+B+X+R+W+Y" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8FHvK2B8s4p6z/L5d2/2+Xp+h6z/Q+P7e+Z+B+X+R+W+Y" crossorigin="anonymous">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -201,20 +201,18 @@
                 <h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
                 <div class="sidebar-radio-group pb-10 mb-10">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-1" name="menu-dropdown-icon"
-                            class="custom-control-input" value="icon-style-1" checked="">
-                        <label class="custom-control-label" for="sidebaricon-1"><i
-                                class="fa fa-angle-down"></i></label>
+                        <input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input"
+                            value="icon-style-1" checked="">
+                        <label class="custom-control-label" for="sidebaricon-1"><i class="fa fa-angle-down"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-2" name="menu-dropdown-icon"
-                            class="custom-control-input" value="icon-style-2">
-                        <label class="custom-control-label" for="sidebaricon-2"><i
-                                class="ion-plus-round"></i></label>
+                        <input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input"
+                            value="icon-style-2">
+                        <label class="custom-control-label" for="sidebaricon-2"><i class="ion-plus-round"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-3" name="menu-dropdown-icon"
-                            class="custom-control-input" value="icon-style-3">
+                        <input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input"
+                            value="icon-style-3">
                         <label class="custom-control-label" for="sidebaricon-3"><i
                                 class="fa fa-angle-double-right"></i></label>
                     </div>
@@ -223,40 +221,38 @@
                 <h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
                 <div class="sidebar-radio-group pb-30 mb-10">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-1" name="menu-list-icon"
-                            class="custom-control-input" value="icon-list-style-1" checked="">
+                        <input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input"
+                            value="icon-list-style-1" checked="">
                         <label class="custom-control-label" for="sidebariconlist-1"><i
                                 class="ion-minus-round"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-2" name="menu-list-icon"
-                            class="custom-control-input" value="icon-list-style-2">
+                        <input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input"
+                            value="icon-list-style-2">
                         <label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o"
                                 aria-hidden="true"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-3" name="menu-list-icon"
-                            class="custom-control-input" value="icon-list-style-3">
-                        <label class="custom-control-label" for="sidebariconlist-3"><i
-                                class="dw dw-check"></i></label>
+                        <input type="radio" id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input"
+                            value="icon-list-style-3">
+                        <label class="custom-control-label" for="sidebariconlist-3"><i class="dw dw-check"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-4" name="menu-list-icon"
-                            class="custom-control-input" value="icon-list-style-4" checked="">
+                        <input type="radio" id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input"
+                            value="icon-list-style-4" checked="">
                         <label class="custom-control-label" for="sidebariconlist-4"><i
                                 class="icon-copy dw dw-next-2"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-5" name="menu-list-icon"
-                            class="custom-control-input" value="icon-list-style-5">
+                        <input type="radio" id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input"
+                            value="icon-list-style-5">
                         <label class="custom-control-label" for="sidebariconlist-5"><i
                                 class="dw dw-fast-forward-1"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-6" name="menu-list-icon"
-                            class="custom-control-input" value="icon-list-style-6">
-                        <label class="custom-control-label" for="sidebariconlist-6"><i
-                                class="dw dw-next"></i></label>
+                        <input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input"
+                            value="icon-list-style-6">
+                        <label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
                     </div>
                 </div>
 
@@ -270,10 +266,8 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="{{ url('admin') }}">
-                <img src="{{ asset('dashassets/vendors/images/deskapp-logo.svg') }}" alt=""
-                    class="dark-logo">
-                <img src="{{ asset('dashassets/vendors/images/deskapp-logo-white.svg') }}" alt=""
-                    class="light-logo">
+                <img src="{{ asset('dashassets/vendors/images/deskapp-logo.svg') }}" alt="" class="dark-logo">
+                <img src="{{ asset('dashassets/vendors/images/deskapp-logo-white.svg') }}" alt="" class="light-logo">
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -289,16 +283,7 @@
                         </a>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-edit2"></span><span class="mtext">Forms</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="form-basic.html">Login</a></li>
-                            <li><a href="advanced-components.html">Register</a></li>
-
-                        </ul>
-                    </li>
+                    
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-library"></span><span class="mtext">Product</span>
@@ -309,7 +294,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="calendar.html" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.orders.index') }}" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-calendar1"></span><span class="mtext">Orders</span>
                         </a>
                     </li>
@@ -319,7 +304,7 @@
                             <span class="micon dw dw-user"></span><span class="mtext">Customer</span>
                         </a>
                     </li>
-                    
+
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-user-2"></span><span class="mtext">Employee</span>
@@ -329,7 +314,7 @@
                             <li><a href="{{ route('employees.create') }}">Add Employee</a></li>
                         </ul>
                     </li>
-                   
+
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-library"></span><span class="mtext">Category</span>
@@ -340,37 +325,44 @@
                         </ul>
                     </li>
 
-<li>
-    <a href="#" class="dropdown-toggle no-arrow"
-       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <span class="micon dw dw-logout"></span>
-        <span class="mtext">Logout</span>
-    </a>
+                    <li>
+                        <a href="#" class="dropdown-toggle no-arrow"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <span class="micon dw dw-logout"></span>
+                            <span class="mtext">Logout</span>
+                        </a>
 
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-</li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
 
                 </ul>
             </div>
         </div>
     </div>
     <div class="mobile-menu-overlay"></div>
-       @yield('dashcontent1')
+    @yield('dashcontent1')
     <div class="main-container">
-      
-			@yield('categoryCreate')
-            @yield('categorycontent')
-        </div>
-    
-            @yield('product-index')
-            @yield('product-create')
-            @yield('product-edit')
+
+        @yield('categoryCreate')
+        @yield('categorycontent')
+        @yield('order-content')
+        @yield('order-detail-content')
+
+
+    </div>
+
+    @yield('product-index')
+    @yield('product-create')
+    @yield('product-edit')
 
 
 
-        
+
+
+
+
 
 
 

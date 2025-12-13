@@ -30,17 +30,17 @@ use App\Http\Controllers\Admin\{
 */
 
 
-    Route::get('/', [HomeController::class,'index'])->name('home');
-    Route::get('/shop', [HproductController::class, 'shop'])->name('shop');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/shop', [HproductController::class, 'shop'])->name('shop');
 
-    Route::get('/blog',[HomeController::class,'blog'])->name('blog');
-    Route::get('/contact',[HomeController::class,'contact'])->name('contact');
-Route::middleware(['auth','role:customer'])->group(function () {
+Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+// Route::middleware(['auth', 'role:customer'])->group(function () {
 
 
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
-});
+//     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+//     Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
+// });
 
 Route::get('/shop/category/{slug}', [HproductController::class, 'shopByCategory'])->name('shop.category');
 
@@ -68,11 +68,13 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
     // Checkout page
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 
+    Route::post('/checkout/place', [HomeController::class, 'placeOrder'])->name('checkout.place');
+
     // Store Order (IMPORTANT)
     Route::post('/user-orders/store', [OrderController::class, 'store'])->name('userorders.store');
 
     // Thank you page
-        Route::get('/thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
+    Route::get('/thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 
 });
 
@@ -124,4 +126,20 @@ Route::prefix('employee')->middleware(['auth', 'role:employee'])->group(function
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('employee.dashboard');
+});
+
+
+
+
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+
+    Route::get('/dashboard', [AdminOrderController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+
+    Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.detail');
+    Route::get('admin/orders/export/{format}', [AdminOrderController::class, 'export'])->name('orders.export');
+
+
 });
