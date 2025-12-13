@@ -1,8 +1,6 @@
-@extends("Layouts.webmaster")
+@extends('Layouts.webmaster')
 
 @section('contact-content')
-
-
     <!-- Contact Start -->
     <div class="container-fluid">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Contact
@@ -12,23 +10,28 @@
                 <div class="bg-light p-30">
                     <h4 class="mb-4">Receive messages instantly with our PHP and Ajax contact form - available in the <a
                             href="https://htmlcodex.com/downloading/?item=1479">Pro Version</a> only.</h4>
-                    <form>
+                <form action="{{ route('feedback.store') }}" method="POST">
+                    @csrf
                         <div class="control-group mb-3">
-                            <input type="text" class="form-control" placeholder="Your Name" />
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" required />
                         </div>
+
                         <div class="control-group mb-3">
-                            <input type="email" class="form-control" placeholder="Your Email" />
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" required />
                         </div>
+
                         <div class="control-group mb-3">
-                            <input type="text" class="form-control" placeholder="Subject" />
+                            <input type="text" name="subject" class="form-control" placeholder="Subject" required />
                         </div>
+
                         <div class="control-group mb-3">
-                            <textarea class="form-control" rows="8" placeholder="Message"></textarea>
+                            <textarea name="message" class="form-control" rows="8" placeholder="Message" required></textarea>
                         </div>
+
                         <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit">Send
-                                Message</button>
+                            <button class="btn btn-primary py-2 px-4" type="submit">Send Message</button>
                         </div>
+
                     </form>
                 </div>
             </div>

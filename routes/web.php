@@ -34,13 +34,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [HproductController::class, 'shop'])->name('shop');
 
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-// Route::middleware(['auth', 'role:customer'])->group(function () {
 
-
-//     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-//     Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
-// });
 
 Route::get('/shop/category/{slug}', [HproductController::class, 'shopByCategory'])->name('shop.category');
 
@@ -83,7 +77,10 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
 // Feedback
 Route::resource('feedback', FeedbackController::class);
 
-
+//Feedback 
+Route::get('feedback', [FeedbackController::class, 'create'])->name('feedback.create'); 
+ // Store new feedback 
+ Route::post('feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
 /*
 |--------------------------------------------------------------------------
 | AUTH ROUTES

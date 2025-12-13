@@ -31,7 +31,7 @@
         <div class="col-lg-6 d-none d-lg-block">
             <div class="d-inline-flex align-items-center h-100">
                 <a class="text-body mr-3" href="">About</a>
-                <a class="text-body mr-3" href="">Contact</a>
+                <a class="text-body mr-3" href="{{ route('feedback.create') }}">Contact</a>
                 <a class="text-body mr-3" href="">Help</a>
                 <a class="text-body mr-3" href="">FAQs</a>
             </div>
@@ -143,7 +143,7 @@
                         <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                         <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
                         <a href="{{ route('blog') }}" class="nav-item nav-link">Blog</a>
-                        <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+                        <a href="{{ route('feedback.create') }}" class="nav-item nav-link">Contact</a>
                     </div>
 
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
@@ -174,6 +174,7 @@
 
 @yield('home-content')
 @yield('shop-content')
+@yield('blog-content')
 @yield('cart-content')
 @yield('contact-content')
 @yield('detail-content')
@@ -200,25 +201,21 @@
 
                 <div class="col-md-4 mb-5">
                     <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Cart</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                        <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                      <div class="d-flex flex-column justify-content-start">
+                        <a class="text-secondary mb-2" href="{{ route('home') }}"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                        <a class="text-secondary mb-2" href="{{ route('shop') }}"><i class="fa fa-angle-right mr-2"></i>Shop</a>
+                        <a class="text-secondary mb-2" href="{{ route('cart.index') }}"><i class="fa fa-angle-right mr-2"></i>Cart</a>
+                        <a class="text-secondary" href="{{ route('feedback.create') }}"><i class="fa fa-angle-right mr-2"></i>Contact</a>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-5">
                     <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Cart</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                        <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                        <a class="text-secondary mb-2" href="{{ route('home') }}"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                        <a class="text-secondary mb-2" href="{{ route('shop') }}"><i class="fa fa-angle-right mr-2"></i>Shop</a>
+                        <a class="text-secondary mb-2" href="{{ route('cart.index') }}"><i class="fa fa-angle-right mr-2"></i>Cart</a>
+                        <a class="text-secondary" href="{{ route('feedback.create') }}"><i class="fa fa-angle-right mr-2"></i>Contact</a>
                     </div>
                 </div>
 
@@ -229,18 +226,12 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Your Email Address">
                             <div class="input-group-append">
-                                <button class="btn btn-primary">Sign Up</button>
+                                <a href="{{ route('register') }}" class="btn btn-primary">Sign Up</a>
                             </div>
                         </div>
                     </form>
 
-                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
-                    <div class="d-flex">
-                        <a class="btn btn-primary btn-square mr-2"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-primary btn-square mr-2"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-primary btn-square mr-2"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-primary btn-square"><i class="fab fa-instagram"></i></a>
-                    </div>
+                  
                 </div>
 
             </div>
