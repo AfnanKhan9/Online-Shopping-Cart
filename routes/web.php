@@ -78,9 +78,9 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
 Route::resource('feedback', FeedbackController::class);
 
 //Feedback 
-Route::get('feedback', [FeedbackController::class, 'create'])->name('feedback.create'); 
- // Store new feedback 
- Route::post('feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
+Route::get('feedback', [FeedbackController::class, 'create'])->name('feedback.create');
+// Store new feedback 
+Route::post('feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
 /*
 |--------------------------------------------------------------------------
 | AUTH ROUTES
@@ -136,7 +136,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
 
     Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.detail');
-    Route::get('admin/orders/export/{format}', [AdminOrderController::class, 'export'])->name('orders.export');
+    Route::get('/orders/export/{format}', [AdminOrderController::class, 'export'])->name('orders.export');
+
+    Route::patch(
+        '/orders/{order}/status',
+        [AdminOrderController::class, 'updateStatus']
+    )->name('orders.updateStatus');
 
 
 });
