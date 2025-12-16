@@ -21,6 +21,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('mainassets/css/style.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -144,6 +145,7 @@
                         <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
                         <a href="{{ route('blog') }}" class="nav-item nav-link">Blog</a>
                         <a href="{{ route('feedback.create') }}" class="nav-item nav-link">Contact</a>
+                        <a href="{{ route('my.orders') }}" class="nav-item nav-link">My-Orders</a>
                     </div>
 
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
@@ -180,6 +182,8 @@
 @yield('detail-content')
 @yield('checkout-content')
 @yield('thankyou-content')
+@yield('editprofile')
+@yield('order-view')
 
 
 

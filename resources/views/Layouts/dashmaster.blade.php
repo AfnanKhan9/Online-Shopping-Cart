@@ -349,6 +349,8 @@
         @yield('categorycontent')
         @yield('order-content')
         @yield('order-detail-content')
+        @yield('customercontent')
+        @yield('categorycreatecontent')
 
 
     </div>
