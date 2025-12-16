@@ -71,20 +71,15 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
     // Thank you page
     Route::get('/thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 
-    Route::get('/profile/edit', [CustomerController::class, 'editProfile'])
-        ->name('customer.profile.edit');
-
-    Route::put('/profile/update', [CustomerController::class, 'updateProfile'])
-        ->name('customer.profile.update');
-
-    Route::get('/my-orders', [OrderviewController::class, 'index'])
-        ->name('my.orders');
+    Route::get('/profile/edit', [CustomerController::class, 'editProfile'])->name('customer.profile.edit');
+    Route::put('/profile/update', [CustomerController::class, 'updateProfile'])->name('customer.profile.update');
+    Route::get('/my-orders', [OrderviewController::class, 'index'])->name('my.orders');
 });
 
 
 
 // Feedback
-
+Route::resource('feedback', FeedbackController::class);
 
 //Feedback 
 Route::get('feedback', [FeedbackController::class, 'create'])->name('feedback.create');
@@ -145,5 +140,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
 
     Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.detail');
-    Route::get('admin/orders/export/{format}', [AdminOrderController::class, 'export'])->name('orders.export');
+    Route::get('/orders/export/{format}', [AdminOrderController::class, 'export'])->name('orders.export');
+
+    Route::patch(
+        '/orders/{order}/status',
+        [AdminOrderController::class, 'updateStatus']
+    )->name('orders.updateStatus');
 });
