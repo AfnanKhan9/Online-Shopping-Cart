@@ -139,23 +139,44 @@
                                                 </td>
 
                                                 <td class="py-3 px-4">
-                                                    @if ($order->status === 'Pending')
-                                                        <span
-                                                            class="badge bg-warning bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
-                                                            <i class="fas fa-clock me-1"></i> PENDING
-                                                        </span>
-                                                    @elseif($order->status === 'Shipped')
-                                                        <span
-                                                            class="badge bg-warning bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
-                                                            <i class="fas fa-shipping-fast me-1"></i> SHIPPED
-                                                        </span>
-                                                    @else
-                                                        <span
-                                                            class="badge bg-warning bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
-                                                            <i class="fas fa-check-circle me-1"></i> DELIVERED
-                                                        </span>
-                                                    @endif
-                                                </td>
+    @switch(strtolower($order->status))
+        @case('pending')
+            <span class="badge bg-warning bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
+                <i class="fas fa-clock me-1"></i> PENDING
+            </span>
+            @break
+
+        @case('processing')
+            <span class="badge bg-info bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
+                <i class="fas fa-spinner fa-spin me-1"></i> PROCESSING
+            </span>
+            @break
+
+        @case('shipped')
+            <span class="badge bg-primary bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
+                <i class="fas fa-shipping-fast me-1"></i> SHIPPED
+            </span>
+            @break
+
+        @case('delivered')
+            <span class="badge bg-success bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
+                <i class="fas fa-check-circle me-1"></i> DELIVERED
+            </span>
+            @break
+
+        @case('cancelled')
+            <span class="badge bg-danger bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
+                <i class="fas fa-times-circle me-1"></i> CANCELLED
+            </span>
+            @break
+
+        @default
+            <span class="badge bg-secondary bg-opacity-100 text-dark px-4 py-2 rounded-pill fw-bold">
+                {{ strtoupper($order->status) }}
+            </span>
+    @endswitch
+</td>
+
 
                                                 <td class="py-3 px-4">
                                                     <div class="d-flex align-items-center">

@@ -30,9 +30,7 @@
                         <td>{{ $custom->phone }}</td>
                         <td>{{ $custom->address }}</td>
                         <td>
-                            <a href="{{ route('customers.edit', $custom->id) }}" class="btn btn-info btn-sm">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
+                            
 
                             <form action="{{ route('customers.destroy', $custom->id) }}" method="POST" style="display:inline;">
                                 @csrf
